@@ -1,26 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <odoo>
+
+    <!-- search view -->
+    <record id="car_search_view" model="ir.ui.view">
+         <field name="name">Cars Search</field>
+        <field name="model">car.car</field>
+        <field name="arch" type="xml"> 
+            <search string="Car Search">
+                <!-- group  start-->
+                <group expand="1" string="Group By ..">
+                  
+                  <filter name="filter_3" string="Name" domain="[]" context="{'group_by':'car_name'}"/>
+                  
+                </group>
+                <!-- filter end -->
+                <!-- filter start-->
+                <filter string="My First Filter" name="filter_1" domain="[('door_number','=',2)]"/>
+                <filter string="My Second Filter" name="filter_2" domain="[('door_number','&gt;',2)]"/>
+                <!-- filter end -->
+            </search> 
+        </field>
+    </record>  
+
+
     <!-- Form View Car -->
     <record id="car_form" model="ir.ui.view">
         <field name="name">Cars Form </field>
         <field name="model">car.car</field>
         <field name="arch" type="xml">
             <form>
+            <sheet>
+                <header>
+                    <field name="status" widget="statusbar"/>
+                    
+                    <button name="%(my_first_module.car_wizard_action_view)d" string="Update Horse Power" type="action"  class="btn btn-info" />
+
+                    <button name="set_car_to_used" string="Set Car Used" type="object" class="oe_highlight" />
+                    <button name="set_car_to_sold" string="Set Car Sold" type="object" class="oe_highlight"/> 
+
+                     <!-- <button name="set_car_to_used" string="Set Car Used" type="object" class="oe_highlight" attrs="{'invisible':[('status','!=','New')]}"/>
+                    <button name="set_car_to_sold" string="Set Car Sold" type="object" class="oe_highlight" attrs="{'invisible':[('status','!=','used')]}"/> -->
+                </header>
                 <group>
-                    <field class="text-danger" name="car_name"/>
-                    <field class="text-danger" name="horse_power"/>
-                    <field class="text-danger" name="door_number"/>
-                    <field class="text-danger" name="max_speed"/>                
-                    <h3 class="text-center">One Driver To Many Car</h3>
-                    <field  name="driver_id"/>
-                    <h3 class="text-center">Many Car To Many Features</h3>
-                    <field name="features_ids" widget="many2many_tags" />
+                    <group>
+                        <field name="car_sequence" readonly="12"/>
+                        <field class="text-danger" name="car_name"/>
+                        
+                        <field class="text-danger" name="car_name1"/>
+                        <field class="text-success" name="horse_power"/>
+                        <field class="text-danger" name="door_number"/>
+                        <field class="text-success" name="max_speed"/>                
+                        <h3 class="text-center">One Driver To Many Car</h3>
+                        <field  name="driver_id"/>
+                        <h3 class="text-center">Many Car To Many Features</h3>
+                        <field class="text-success" name="features_ids" widget="many2many_tags" />
 
 
-                    <field name="total_speed"/>
+                        <field class="text-success" name="total_speed"/>
 
+                        <!-- <field name="random_message"/> -->
+                    </group>
                 </group>
+            </sheet>
             </form>
         </field>
     </record>
@@ -31,31 +73,36 @@
         <field name="model">car.car</field>
         <field name="arch" type="xml">
             <tree>
-                <field class="text-primary" name="car_name"/>
-                <field class="text-primary" name="horse_power"/>
-                <field class="text-primary" name="door_number"/>
-                <field class="text-primary" name="max_speed"/>
-                <field class="text-primary" name="driver_id"/>
+              
+                    <field class="text-primary" name="car_name"/>
+                    <field class="text-success" name="horse_power"/>
+                    <field class="text-primary" name="door_number"/>
+                    <field class="text-success" name="max_speed"/>
+                    <field class="text-primary" name="driver_id"/>
 
-                <field class="text-primary" name="features_ids" widget="many2many_tags" />
+                    <field  name="features_ids" widget="many2many_tags" />
+                    
+                    <field class="text-success" name="total_speed"/>
                 
-                 <field name="total_speed"/>
-
             </tree>
         </field>
     </record>
 
     <!-- Action view Car -->
     <record id="car_action" model="ir.actions.act_window">
-        <field name="name">CaRs TeSt</field>
+        <field name="name">Cars Test</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">car.car</field>
         <field name="view_mode">tree,form</field>
 
+        <!-- <field name="context">{"search_default_filter_1":0}</field> -->
+        <field name="context">{"search_default_filter_2":1, "search_default_filter_3":1}</field>
+
+
     </record>
 
     <!-- Menu Car -->
-    <menuitem id="car_menu" name="All CaRs" sequence="200" action="car_action"/>
+    <menuitem id="car_menu" name="All Cars" sequence="200" action="car_action"/>
 
 
 </odoo>

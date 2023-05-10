@@ -29,7 +29,7 @@
 
     <!-- Action view Car -->
     <record id="parking_action" model="ir.actions.act_window">
-        <field name="name">Parking TeSt</field>
+        <field name="name">Parking Test</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">parking.parking</field>
         <field name="view_mode">tree,form</field>
@@ -37,7 +37,4 @@
 
     <!-- sub Menu Car -->
     <menuitem id="parking_menu" name="Parking" parent="car_menu" sequence="1" action="parking_action"/>
-
-
-
 </odoo>

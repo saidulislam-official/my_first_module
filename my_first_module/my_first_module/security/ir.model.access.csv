@@ -1,5 +1,10 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
-access_car_car,Access For Car,model_car_car,,1,1,1,1
-access_parking_parking,Access For Parking,model_parking_parking,,1,1,1,1
-access_car_features, Access For Car Features,model_car_features,,1,1,1,1
+access_car_car_user,Acces User Car,model_car_car,my_first_module.group_user,1,0,0,0
+access_car_car_manager,Acces Manager Car,model_car_car,my_first_module.group_manager,1,1,1,0
+
+access_car_car_super_manager,Acces Manager Car,model_car_car,my_first_module.group_super_manager,1,1,1,1
+
+
+access_parking_parking,_parking_parking,model_parking_parking,,1,1,1,1
+access_car_features,_car_features,model_car_features,,1,1,1,1

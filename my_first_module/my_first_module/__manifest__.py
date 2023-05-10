@@ -13,6 +13,7 @@
     'author': "My Company",
     'website': "http://www.yourcompany.com",
 
+    
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
@@ -20,18 +21,28 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base','mail',],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        #security
+        'views/security.xml',
         
-        # 'views/views.xml',
+        # wizard xml file
+        'wizard/car_wizard.xml',
+        #data
+        'data/car_template_mail.xml',
+
         
+
+        #views
         'views/car.xml',
         'views/parking.xml',
-        
-        
+        'views/sequence.xml',
+        'views/res_partner_inherit_form_view.xml',
+        'views/rules.xml',
+
     ],
     # only loaded in demonstration mode
     'demo': [
